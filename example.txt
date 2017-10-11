@@ -1,5 +1,3 @@
-
-
 resilio_sync_shared_folders:
  - secret: YouSuperSecretResilioKey
    dir: /dir/for/synchronization

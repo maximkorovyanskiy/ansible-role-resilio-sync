@@ -1,4 +1,4 @@
-Ansible role for setup resilio sync to Linux server.
+# Ansible role for setup resilio sync to Linux server.
 
 Tested on Ubuntu 16.04
 
