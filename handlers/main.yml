@@ -1,0 +1,9 @@
+---
+- name: start resilio-sync
+  service: name=resilio-sync state=started
+
+- name: restart resilio-sync
+  service: name=resilio-sync state=restarted
+
+- name: stop resilio-sync
+  service: name=resilio-sync state=stoped

@@ -1,0 +1,46 @@
+{
+    "device_name": "{{ resilio_sync_device_name }}",
+    "storage_path" : "{{ resilio_sync_storage_path }}",
+    "pid_file" : "{{ resilio_sync_pid_file }}",
+    "use_upnp" : {{ resilio_sync_use_upnp }},
+
+    "download_limit" : {{ resilio_sync_download_limit }},
+    "upload_limit" : {{ resilio_sync_upload_limit }},
+
+{% if resilio_sync_shared_folders is undefined %}
+    "webui" :
+     {
+       "listen" : "{{ resilio_sync_webui_listen_address }}:{{ resilio_sync_webui_listen_port }}"
+       ,"login" : "{{ resilio_sync_ui_admin_login }}"
+{% if resilio_sync_ui_admin_password_hash is defined %}
+       ,"password_hash" : "{{ admin_passwd_hash }}"
+{% else %}
+       ,"password" : "{{ resilio_sync_ui_admin_pass }}"
+{% endif %}
+       ,"allow_empty_password" : {{ resilio_sync_webui_allow_empty_password }}
+     }
+{% endif %}
+{% if resilio_sync_shared_folders is defined %}
+    "shared_folders" :
+    [
+{% for item in resilio_sync_shared_folders %}
+      {
+        "secret" : "{{ item.secret }}",
+        "dir" : "{{ item.dir }}",
+        "use_relay_server" : {{ item.use_relay_server | default('false') }},
+        "use_tracker" : {{ item.use_tracker | default('false') }},
+        "search_lan" : {{ item.search_lan | default('false') }},
+        "use_sync_trash" : {{ item.use_sync_trash | default('false') }},
+        "overwrite_changes" : {{ item.overwrite_changes | default('true') }},
+        "selective_sync" : {{ item.selective_sync | default('false') }},
+{% if item.known_hosts is defined %}
+        "known_hosts" :
+        [
+          "{{ item.known_hosts }}"
+        ]
+{% endif %}
+      }
+{% endfor %}
+    ]
+{% endif %}
+}

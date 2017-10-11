@@ -1,0 +1,17 @@
+resilio_sync_apt_repo_key: 'https://linux-packages.resilio.com/resilio-sync/key.asc'
+resilio_sync_apt_repo_address: 'http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free'
+
+resilio_sync_device_name: "{{ ansible_hostname }}"
+resilio_sync_storage_path: "/var/lib/resilio-sync/"
+resilio_sync_pid_file: "/var/run/resilio-sync/sync.pid"
+
+resilio_sync_use_upnp: 'true'
+resilio_sync_download_limit: '0'
+resilio_sync_upload_limit: '0'
+
+resilio_sync_webui_listen_address: 127.0.0.1
+resilio_sync_webui_listen_port: 8888
+resilio_sync_webui_admin_login: admin
+#resilio_sync_ui_admin_password_hash: 'some_hashe_hire'
+resilio_sync_webui_admin_pass: SuperPasswd
+resilio_sync_webui_allow_empty_password: 'false'
